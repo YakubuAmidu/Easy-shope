@@ -1,6 +1,6 @@
 import { Platform } from 'react-native';
 
-let baseURL = 'https://easy-shope.herokuapp.com/api/v1/';
+let baseURL = 'https://mernstack-reactnative.herokuapp.com/';
 
 // let baseURL = '';
 

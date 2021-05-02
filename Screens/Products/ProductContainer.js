@@ -9,14 +9,14 @@ import {
 } from 'react-native';
 import { Container, Header, Icon, Item, Input, Text } from 'native-base';
 import { useFocusEffect } from '@react-navigation/native';
-
-import baseURL from '../../assets/common/baseUrl';
+import baseUrl from '../../assets/common/baseUrl';
 import axios from 'axios';
 
 import ProductList from './ProductList';
-import SearchProducts from './SearchProducts';
+//import SearchedProduct from './SearchedProducts';
 import Banner from '../../Shared/Banner';
 import CategoryFilter from './CategoryFilter';
+import baseURL from '../../assets/common/baseUrl';
 
 var { height } = Dimensions.get('window');
 
@@ -35,7 +35,7 @@ const ProductContainer = (props) => {
       setFocus(false);
       setActive(-1);
 
-      // Product
+      // Products
       axios
         .get(`${baseURL}products`)
         .then((res) => {
@@ -70,7 +70,7 @@ const ProductContainer = (props) => {
     }, [])
   );
 
-  // Product methods
+  // Product Methods
   const searchProduct = (text) => {
     setProductsFiltered(
       products.filter((i) => i.name.toLowerCase().includes(text.toLowerCase()))
@@ -92,7 +92,7 @@ const ProductContainer = (props) => {
         ? [setProductsCtg(initialState), setActive(true)]
         : [
             setProductsCtg(
-              products.filter((i) => i.categories._id === ctg),
+              products.filter((i) => i.category._id === ctg),
               setActive(true)
             ),
           ];
@@ -117,7 +117,7 @@ const ProductContainer = (props) => {
             </Item>
           </Header>
           {focus == true ? (
-            <SearchProducts
+            <SearchedProduct
               navigation={props.navigation}
               productsFiltered={productsFiltered}
             />
@@ -130,7 +130,7 @@ const ProductContainer = (props) => {
                 <View>
                   <CategoryFilter
                     categories={categories}
-                    CategoryFilter={changeCtg}
+                    categoryFilter={changeCtg}
                     productsCtg={productsCtg}
                     active={active}
                     setActive={setActive}
@@ -142,7 +142,7 @@ const ProductContainer = (props) => {
                       return (
                         <ProductList
                           navigation={props.navigation}
-                          key={item._id.$oid}
+                          key={item.name}
                           item={item}
                         />
                       );
@@ -176,8 +176,8 @@ const styles = StyleSheet.create({
     height: height,
     flex: 1,
     flexDirection: 'row',
-    flexWrap: 'wrap',
     alignItems: 'flex-start',
+    flexWrap: 'wrap',
     backgroundColor: 'gainsboro',
   },
   center: {
