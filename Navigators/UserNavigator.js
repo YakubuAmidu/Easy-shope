@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../Screens/User/Login';
 import Register from '../Screens/User/Register';
 import UserProfile from '../Screens/User/UserProfile';
-import { StackActions } from '@react-navigation/routers';
 
 const Stack = createStackNavigator();
 
@@ -34,4 +33,8 @@ function MyStack() {
       />
     </Stack.Navigator>
   );
+}
+
+export default function UserNavigator() {
+  return <MyStack />;
 }
