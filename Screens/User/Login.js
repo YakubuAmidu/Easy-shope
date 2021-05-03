@@ -6,6 +6,20 @@ import Input from '../../Shared/Form/Input';
 const Login = (props) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+
+  const handleSubmit = () => {
+    const user = {
+      email,
+      password,
+    };
+
+    if (email === '' || password === '') {
+      setError('Please fill in your credentials');
+    } else {
+      console.log('Success');
+    }
+  };
 
   return (
     <FormContainer title={'Login'}>
@@ -24,7 +38,16 @@ const Login = (props) => {
         value={password}
         onChangeText={(text) => setPassword(text)}
       />
-      <View style={styles.buttonGroup}></View>
+      <View style={styles.buttonGroup}>
+        <Button title="Login" />
+      </View>
+      <View style={[{ marginTop: 40 }, styles.buttonGroup]}>
+        <Text style={styles.middleText}>Don't have an account yet ?</Text>
+        <Button
+          title="Register"
+          onPress={() => props.navigation.navigate('Register')}
+        />
+      </View>
     </FormContainer>
   );
 };
@@ -33,6 +56,10 @@ const styles = StyleSheet.create({
   buttonGroup: {
     width: '80%',
     alignItems: 'center',
+  },
+  middleText: {
+    marginBottom: 20,
+    alignSelf: 'center',
   },
 });
 
