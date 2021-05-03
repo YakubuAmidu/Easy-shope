@@ -12,16 +12,64 @@ const Register = (props) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
+  const register = () => {
+    if (email === '' || name === '' || phone === '' || password === '') {
+      setError('Please fill in the form correctly');
+    }
+  };
+
   return (
     <KeyboardAwareScrollView title={'Register'}>
-      <Input
-        placeholder={'Email'}
-        name={'email'}
-        id={'email'}
-        onChangeText={(text) => setEmail(text)}
-      />
+      <FormContainer title={'Register'}>
+        <Input
+          placeholder={'Email'}
+          name={'email'}
+          id={'email'}
+          onChangeText={(text) => setEmail(text)}
+        />
+        <Input
+          placeholder={'Name'}
+          name={'name'}
+          id={'name'}
+          onChangeText={(text) => setName(text)}
+        />
+        <Input
+          placeholder={'Phonet Number'}
+          name={'phone'}
+          id={'phone'}
+          keyboardType={'numeric'}
+          onChangeText={(text) => setPhone(text)}
+        />
+        <Input
+          placeholder={'Password'}
+          name={'password'}
+          id={'password'}
+          secureTextEntry={true}
+          onChangeText={(text) => setPassword(text)}
+        />
+        <View style={styles.buttonGroup}>
+          {error ? <Error message={error} /> : null}
+        </View>
+        <View>
+          <Button title={'Register'} onPress={() => register()} />
+        </View>
+        <View>
+          <Button
+            title={'Back to Login'}
+            onPress={() => props.navigation.navigate('Login')}
+          />
+        </View>
+      </FormContainer>
     </KeyboardAwareScrollView>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonGroup: {
+    width: '80%',
+    margin: 10,
+    alignItems: 'center',
+  },
+});
 
 export default Register;
