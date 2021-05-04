@@ -47,3 +47,16 @@ export const getUserProfile = (id) => {
     .then((res) => res.json())
     .then((data) => console.log(data));
 };
+
+export const logoutUser = (dispatch) => {
+  AsyncStorage.removeItem('jwt');
+  dispatch(setCurrentUser());
+};
+
+export const setCurrentUser = (decoded, user) => {
+  return {
+    type: SET_CURRENT_USER,
+    payload: decoded,
+    getUserProfile: user,
+  };
+};
