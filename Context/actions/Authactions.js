@@ -34,3 +34,16 @@ export const loginUser = (user, dispatch) => {
       // Todo
     });
 };
+
+export const getUserProfile = (id) => {
+  fetch(`${baseURL}users/${id}`, {
+    method: 'GET',
+    body: JSON.stringify(user),
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+};
