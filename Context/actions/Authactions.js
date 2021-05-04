@@ -19,9 +19,10 @@ export const loginUser = (user, dispatch) => {
       if (data) {
         const token = data.token;
         AsyncStorage.setItem('jwt', token);
-        dispatch(); // TODO
+        const decoded = jwt_decoded(token);
+        dispatch(setCurrentUser(decoded, user));
       } else {
-        // TODO
+        logoutUser(dispatch);
       }
     })
     .catch((err) => {
@@ -31,7 +32,7 @@ export const loginUser = (user, dispatch) => {
         text1: 'Please provide correct crendentials',
         text2: '',
       });
-      // Todo
+      logoutUser(dispatch);
     });
 };
 
