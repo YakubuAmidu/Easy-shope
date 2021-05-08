@@ -22,7 +22,17 @@ const UserProfile = (props) => {
     ) {
       props.navigation.navigate('Login');
     }
-  });
+
+    AsyncStorage.getItem('jwt')
+      .then((res) => {
+        axios
+          .get(`${baseURL}users/${context.stateUser.user.sub}`, {
+            headers: { Authorization: `Bearer ${res}` },
+          })
+          .then((user) => setUserProfile(user.data));
+      })
+      .catch((error) => console.log(error));
+  }, [context.stateUser.isAuthenticated]);
   return (
     <View>
       <Text>UserProfile Screen</Text>
