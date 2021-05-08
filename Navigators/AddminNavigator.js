@@ -18,6 +18,31 @@ function MyStack() {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="Products"
+        component={Products}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ProductForm"
+        component={ProductForm}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Categories"
+        component={Categories}
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack.Navigator>
   );
+}
+
+export function AddminNavigator() {
+  return <MyStack />;
 }
