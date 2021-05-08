@@ -32,11 +32,36 @@ const UserProfile = (props) => {
           .then((user) => setUserProfile(user.data));
       })
       .catch((error) => console.log(error));
+
+    return () => {
+      setUserProfile();
+    };
   }, [context.stateUser.isAuthenticated]);
   return (
-    <View>
-      <Text>UserProfile Screen</Text>
-    </View>
+    <Container>
+      <ScrollView>
+        <Text style={{ fontSize: 30 }}>
+          {userProfile ? userProfile.name : ''}
+        </Text>
+        <View style={{ marginTop: 20 }}>
+          <Text style={{ margin: 10 }}>
+            Email: {userProfile ? userProfile.email : ''}
+          </Text>
+          <Text style={{ margin: 10 }}>
+            Phone: {userProfile ? userProfile.phone : ''}
+          </Text>
+        </View>
+        <View style={{ marginTop: 80 }}>
+          <Button
+            title={'Sign Out'}
+            onPress={() => [
+              AsyncStorage.removeItem('jwt'),
+              logoutUser(context.dispatch),
+            ]}
+          />
+        </View>
+      </ScrollView>
+    </Container>
   );
 };
 
