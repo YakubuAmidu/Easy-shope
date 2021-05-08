@@ -38,8 +38,8 @@ const UserProfile = (props) => {
     };
   }, [context.stateUser.isAuthenticated]);
   return (
-    <Container>
-      <ScrollView>
+    <Container style={styles.container}>
+      <ScrollView contentContainerStyle={styles.subContainer}>
         <Text style={{ fontSize: 30 }}>
           {userProfile ? userProfile.name : ''}
         </Text>
@@ -64,5 +64,16 @@ const UserProfile = (props) => {
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  subContainer: {
+    alignItems: 'center',
+    marginTop: 60,
+  },
+});
 
 export default UserProfile;
