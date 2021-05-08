@@ -12,33 +12,15 @@ function MyStack() {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Orders"
-        component={Orders}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
         name="Products"
         component={Products}
         options={{
-          headerShown: false,
+          title: 'Products',
         }}
       />
-      <Stack.Screen
-        name="ProductForm"
-        component={ProductForm}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
-        name="Categories"
-        component={Categories}
-        options={{
-          headerShown: false,
-        }}
-      />
+      <Stack.Screen name="Categories" component={Categories} />
+      <Stack.Screen name="Orders" component={Orders} />
+      <Stack.Screen name="ProductForm" component={ProductForm} />
     </Stack.Navigator>
   );
 }
