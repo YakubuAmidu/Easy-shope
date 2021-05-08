@@ -18,7 +18,7 @@ const Login = (props) => {
     if (context.stateUser.isAuthenticated === true) {
       props.navigation.navigate('User Profile');
     }
-  }, []);
+  }, [context.stateUser.isAuthenticated]);
 
   const handleSubmit = () => {
     const user = {
@@ -29,7 +29,7 @@ const Login = (props) => {
     if (email === '' || password === '') {
       setError('Please fill in your credentials');
     } else {
-      console.log('Success');
+      loginUser(user, context.dispatch);
     }
   };
 
