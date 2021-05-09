@@ -27,9 +27,9 @@ const ListItem = (props) => {
           setModalVisible(false);
         }}
       >
-        <View>
-          <View>
-            <TouchableHighLight
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <TouchableOpacity
               underlayColor="#E8E8E8"
               onPress={() => {
                 setModalVisible(false);
@@ -42,7 +42,7 @@ const ListItem = (props) => {
               }}
             >
               <Icon name="close" size={20} />
-            </TouchableHighLight>
+            </TouchableOpacity>
             <Button
               title="Edit"
               onPress={() => [
