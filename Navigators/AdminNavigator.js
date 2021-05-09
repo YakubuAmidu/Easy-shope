@@ -25,6 +25,6 @@ function MyStack() {
   );
 }
 
-export function AddminNavigator() {
+export default function AdminNavigator() {
   return <MyStack />;
 }
