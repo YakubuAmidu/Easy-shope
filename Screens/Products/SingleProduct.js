@@ -56,7 +56,15 @@ const SingleProduct = (props) => {
           <H1 style={styles.contentHeader}>{item.name}</H1>
           <Text style={styles.contentText}>{item.brand}</Text>
         </View>
-        {/* TODO: Description, Rich description and Availability */}
+        <View style={styles.availabilityContainer}>
+          <View style={styles.available}>
+            <Text style={{ marginRight: 10 }}>
+              Availability {availabilityText}
+            </Text>
+            {available}
+          </View>
+          <Text>{item.description}</Text>
+        </View>
       </ScrollView>
       <View style={styles.bottomContainer}>
         <Left style={styles.price}>
@@ -130,6 +138,14 @@ const styles = StyleSheet.create({
     fontSize: 24,
     margin: 20,
     color: 'red',
+  },
+  availabilityContainer: {
+    marginBottom: '20px',
+    alignItems: 'center',
+  },
+  available: {
+    flexDirection: 'row',
+    marginBottom: 10,
   },
 });
 
