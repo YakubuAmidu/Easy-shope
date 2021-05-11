@@ -1,22 +1,22 @@
 import styled, { css } from 'styled-components';
 
-const TraficLight = style.View`
-border-radius: 50px;
-width: 10px;
-height: 10px;
-padding: 10px;
+const TraficLight = styled.View`
+  border-radius: 50px;
+  width: 10px;
+  height: 10px;
+  padding: 10px;
 
-${(props) =>
-  props.available &&
-  css`
-    background: #afec1a;
-  `}
+  ${(props) =>
+    props.available &&
+    css`
+      background: #afec1a;
+    `}
 
-${(props) =>
-  props.limited &&
-  css`
-    background: #dde033;
-  `}
+  ${(props) =>
+    props.limited &&
+    css`
+      background: #dde033;
+    `}
 
   ${(props) =>
     props.unavailable &&

@@ -10,6 +10,7 @@ import {
 import { Left, Right, Container, H1 } from 'native-base';
 import Toast from 'react-native-toast-message';
 import EasyButton from '../../Shared/StyledComponents/EasyButton';
+import TraficLight from '../../Shared/StyledComponents/TraficLight';
 
 import { connect } from 'react-redux';
 import * as actions from '../../Redux/Actions/cartActions';
@@ -17,6 +18,20 @@ import * as actions from '../../Redux/Actions/cartActions';
 const SingleProduct = (props) => {
   const [item, setItem] = useState(props.route.params.item);
   const [availability, setAvailability] = useState(null);
+  const [availabilityText, setAvailabilityText] = useState('');
+
+  useEffect(() => {
+    if (props.route.params.item.countInStock == 0) {
+      setAvailability(<TraficLight unavailable></TraficLight>);
+      setAvailabilityText('Unavailable');
+    } else if (props.route.params.item.countInStock <= 5) {
+      setAvailability(<TraficLight limited></TraficLight>);
+      setAvailabilityText('Limited stock');
+    } else {
+      setAvailability(<TraficLight available></TraficLight>);
+      setAvailabilityText('Available');
+    }
+  }, []);
 
   return (
     <Container style={styles.container}>
