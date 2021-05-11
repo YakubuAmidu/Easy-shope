@@ -31,6 +31,11 @@ const SingleProduct = (props) => {
       setAvailability(<TraficLight available></TraficLight>);
       setAvailabilityText('Available');
     }
+
+    return () => {
+      setAvailability(null);
+      setAvailabilityText('');
+    };
   }, []);
 
   return (
