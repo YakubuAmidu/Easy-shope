@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button } from 'react-native';
 import FormContainer from '../../Shared/Form/FormContainer';
 import Input from '../../Shared/Form/Input';
 import Error from '../../Shared/Error';
+import EasyButton from '../../Shared/StyledComponents/EasyButton';
 
 //Context
 import AuthGlobal from '../../Context/store/AuthGlobal';
@@ -52,14 +53,19 @@ const Login = (props) => {
       />
       <View style={styles.buttonGroup}>
         {error ? <Error message={error} /> : null}
-        <Button title="Login" onPress={() => handleSubmit()} />
+        <EasyButton large primary onPress={() => handleSubmit()}>
+          <Text style={{ color: '#fff' }}>Login</Text>
+        </EasyButton>
       </View>
       <View style={[{ marginTop: 40 }, styles.buttonGroup]}>
-        <Text style={styles.middleText}>Don't have an account yet ?</Text>
-        <Button
-          title="Register"
+        <Text style={styles.middleText}>Don't have an account yet?</Text>
+        <EasyButton
+          large
+          secondary
           onPress={() => props.navigation.navigate('Register')}
-        />
+        >
+          <Text style={{ color: '#fff' }}>Register</Text>
+        </EasyButton>
       </View>
     </FormContainer>
   );
