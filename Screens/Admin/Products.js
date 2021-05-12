@@ -171,6 +171,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  container: {
+    marginBottom: 160,
+    backgroundColor: 'white',
+  },
+  buttonContainer: {
+    margin: 20,
+    alignSelf: 'center',
+    flexDirection: 'row',
+  },
+  buttonText: {
+    marginLeft: 4,
+    color: 'white',
+  },
 });
 
 export default Products;
