@@ -40,12 +40,12 @@ const ProductForm = (props) => {
   return (
     <FormContainer title="Add Product">
       <View>
-        <Image sourc={{ uri: mainImage }} />
+        <Image source={{ uri: mainImage }} />
         <TouchableOpacity>
           <Text>IMAGE</Text>
         </TouchableOpacity>
       </View>
-      <View>
+      <View style={styles.label}>
         <Text>Brand</Text>
       </View>
       <Input
@@ -55,8 +55,26 @@ const ProductForm = (props) => {
         value={brand}
         onChangeText={(text) => setBrand(text)}
       />
+
+      <View style={styles.label}>
+        <Text>Name</Text>
+      </View>
+      <Input
+        placeholder="Name"
+        name="name"
+        id="name"
+        value={name}
+        onChangeText={(text) => setName(text)}
+      />
     </FormContainer>
   );
 };
+
+const styles = StyleSheet.create({
+  label: {
+    width: '80%',
+    marginTop: 10,
+  },
+});
 
 export default ProductForm;
