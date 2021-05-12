@@ -74,11 +74,44 @@ const ProductForm = (props) => {
     }
   };
 
+  const addProduct = () => {
+    if (
+      name == '' ||
+      brand == '' ||
+      price == '' ||
+      description == '' ||
+      category == '' ||
+      countInStock == ''
+    ) {
+      setError('Please fill in the form correctly');
+    }
+
+    let formData = new FormData();
+
+    formData.append('name', name);
+    formData.append('brand', brand);
+    formData.append('price', price);
+    formData.append('description', description);
+    formData.append('category', category);
+    formData.append('countInStock', countInStock);
+    formData.append('richDescription', richDescription);
+    formData.append('rating', rating);
+    formData.append('numReviews', numReviews);
+    formData.append('isFeatured', isFeatured);
+
+    const config = {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${token}`,
+      },
+    };
+  };
+
   return (
     <FormContainer title="Add Product">
       <View style={styles.imageContainer}>
         <Image style={styles.image} source={{ uri: mainImage }} />
-        <TouchableOpacity style={styles.imagePicker}>
+        <TouchableOpacity onPress={pickImage} style={styles.imagePicker}>
           <Icon style={{ color: 'white' }} name="camera" />
         </TouchableOpacity>
       </View>
