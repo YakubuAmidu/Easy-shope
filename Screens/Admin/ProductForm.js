@@ -133,30 +133,57 @@ const ProductForm = (props) => {
       },
     };
 
-    axios
-      .post(`${baseURL}products`, formData, config)
-      .then((res) => {
-        if (res.status == 200 || res.status == 201) {
+    if (item !== null) {
+      axios
+        .put(`${baseURL}products/${item.id}`, formData, config)
+        .then((res) => {
+          if (res.status == 200 || res.status == 201) {
+            Toast.show({
+              topOffset: 60,
+              type: "success",
+              text1: "Product successfully updated",
+              text2: "",
+            });
+
+            setTimeout(() => {
+              props.navigation.navigate("Products");
+            }, 500);
+          }
+        })
+        .catch((error) => {
           Toast.show({
             topOffset: 60,
-            type: "success",
-            text1: "New Product added",
-            text2: "",
+            type: "error",
+            text1: "Something went wrong",
+            text2: "Please try again",
           });
-
-          setTimeout(() => {
-            props.navigation.navigate("Products");
-          }, 500);
-        }
-      })
-      .catch((error) => {
-        Toast.show({
-          topOffset: 60,
-          type: "error",
-          text1: "Something went wrong",
-          text2: "Please try again",
         });
-      });
+    } else {
+      axios
+        .post(`${baseURL}products`, formData, config)
+        .then((res) => {
+          if (res.status == 200 || res.status == 201) {
+            Toast.show({
+              topOffset: 60,
+              type: "success",
+              text1: "New Product added",
+              text2: "",
+            });
+
+            setTimeout(() => {
+              props.navigation.navigate("Products");
+            }, 500);
+          }
+        })
+        .catch((error) => {
+          Toast.show({
+            topOffset: 60,
+            type: "error",
+            text1: "Something went wrong",
+            text2: "Please try again",
+          });
+        });
+    }
   };
 
   return (
