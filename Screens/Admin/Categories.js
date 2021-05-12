@@ -19,6 +19,24 @@ const Categories = (props) => {
   const [categoryName, setCategoryName] = useState();
   const [token, setToken] = useState();
 
+  useEffect(() => {
+    AsyncStorage.getItem("jwt")
+      .then((res) => {
+        setToken(res);
+      })
+      .catch((error) => console.log(error));
+
+    axios
+      .get(`${baseURL}categories`)
+      .then((res) => setCategories(res.data))
+      .catch((error) => alert("Error to load categories"));
+
+    return () => {
+      setCategories();
+      setToken();
+    };
+  }, []);
+
   return (
     <View style={{ position: "relative", height: "100%" }}>
       <View style={{ marginBottom: 60 }}>
