@@ -33,11 +33,29 @@ const ProductForm = (props) => {
   const [countInStock, setCountInStock] = useState();
   const [rating, setRating] = useState();
   const [isFeatured, setIsFeatured] = useState(false);
+  const [richDescription, setRichDescription] = useState();
+  const [numReviews, setNumReviews] = useState(0);
+  const [item, setItem] = useState(null);
 
   return (
-    <View>
-      <Text>ProductForm</Text>
-    </View>
+    <FormContainer title="Add Product">
+      <View>
+        <Image sourc={{ uri: mainImage }} />
+        <TouchableOpacity>
+          <Text>IMAGE</Text>
+        </TouchableOpacity>
+      </View>
+      <View>
+        <Text>Brand</Text>
+      </View>
+      <Input
+        placeholder="Brand"
+        name="brand"
+        id="brand"
+        value={brand}
+        onChangeText={(text) => setBrand(text)}
+      />
+    </FormContainer>
   );
 };
 
