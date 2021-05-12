@@ -90,6 +90,34 @@ const ProductForm = (props) => {
         keyboardType={'numeric'}
         onChangeText={(text) => setCountInStock(text)}
       />
+
+      <View style={styles.label}>
+        <Text style={{ textDecorationLine: 'underline' }}>Description</Text>
+      </View>
+      <Input
+        placeholder="description"
+        name="description"
+        id="description"
+        value={description}
+        onChangeText={(text) => setDescription(text)}
+      />
+
+      <Item picker>
+        <picker
+          mode="dropdown"
+          iosIcon={<Icon color={'#007aff'} name="arrow-down" />}
+          style={{ width: undefined }}
+          placeholder="Select your category"
+          selectValue={pickerValue}
+          placeholderStyle={{ color: '#007aff' }}
+          placholderIconColor="#007aff"
+          onValueChange={(e) => [setPickerValue(e), setCategory(e)]}
+        >
+          {categories.map((c) => {
+            return <Picker.Item key={c.id} label={c.name} value={c.id} />;
+          })}
+        </picker>
+      </Item>
     </FormContainer>
   );
 };
