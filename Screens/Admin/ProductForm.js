@@ -60,6 +60,20 @@ const ProductForm = (props) => {
     };
   }, []);
 
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setMainImage(result.uri);
+      setImage(result.uri);
+    }
+  };
+
   return (
     <FormContainer title="Add Product">
       <View style={styles.imageContainer}>
