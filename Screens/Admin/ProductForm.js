@@ -130,6 +130,16 @@ const ProductForm = (props) => {
           })}
         </picker>
       </Item>
+      {error ? <Error message={err} /> : null}
+      <View style={styles.buttonContainer}>
+        <EasyButton
+          large
+          primary
+          //onPress
+        >
+          <Text style={styles.buttonText}>Confirm</Text>
+        </EasyButton>
+      </View>
     </FormContainer>
   );
 };
@@ -138,6 +148,14 @@ const styles = StyleSheet.create({
   label: {
     width: '80%',
     marginTop: 10,
+  },
+  buttonContainer: {
+    width: '80%',
+    marginBottom: 80,
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: 'white',
   },
 });
 
