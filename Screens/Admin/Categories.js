@@ -14,6 +14,21 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 var { width } = Dimensions.get("window");
 
+const Item = (props) => {
+  return (
+    <View style={styles.item}>
+      <Text>{props.item.name}</Text>
+      <EasyButton
+        danger
+        small
+        // onPress
+      >
+        <Text style={{ color: "#fff", fontWeight: "bold" }}>Delete</Text>
+      </EasyButton>
+    </View>
+  );
+};
+
 const Categories = (props) => {
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState();
@@ -42,9 +57,8 @@ const Categories = (props) => {
       <View style={{ marginBottom: 60 }}>
         <FlatList
           data={categories}
-          renderItem={({ item, index }) => {
-            <Text>Categories</Text>;
-          }}
+          renderItem={({ item, index }) => <Item item={item} index={index} />}
+          keyExtractor={(item) => item.id}
         />
       </View>
       <View style={styles.bottomBar}>
@@ -89,6 +103,23 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: "grey",
     borderWidth: 1,
+  },
+  item: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    elevation: 1,
+    padding: 5,
+    margin: 5,
+    backgroundColor: "white",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderRadius: 5,
   },
 });
 
