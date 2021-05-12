@@ -37,6 +37,18 @@ const ProductForm = (props) => {
   const [numReviews, setNumReviews] = useState(0);
   const [item, setItem] = useState(null);
 
+  useEffect(() => {
+    // Categories
+    axios
+      .get(`${baseURL}categorie`)
+      .then((res) => setCategories(res.data))
+      .catch((error) => alert('Error to load categories'));
+
+    return () => {
+      setCategories([]);
+    };
+  }, []);
+
   return (
     <FormContainer title="Add Product">
       <View>
