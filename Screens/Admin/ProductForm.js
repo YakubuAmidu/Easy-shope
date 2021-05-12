@@ -40,6 +40,19 @@ const ProductForm = (props) => {
   const [item, setItem] = useState(null);
 
   useEffect(() => {
+    if (!props.route.params) {
+      setItem(null);
+    } else {
+      setItem(props.route.params.item);
+      setBrand(props.route.params.item.brand);
+      setName(props.route.params.item.name);
+      setPrice(props.route.params.item.price.toString());
+      setDescription(props.params.route.item.description);
+      setMainImage(props.route.params.item.image);
+      setCategory(props.route.params.item.category._id);
+      setCountInStock(props.route.params.item.countInStock.toString());
+    }
+
     AsyncStorage.getItem("jwt")
       .then((res) => {
         setToken(res);
