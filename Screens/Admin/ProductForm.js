@@ -33,7 +33,7 @@ const ProductForm = (props) => {
   const [token, setToken] = useState();
   const [error, setError] = useState();
   const [countInStock, setCountInStock] = useState();
-  const [rating, setRating] = useState();
+  const [rating, setRating] = useState(0);
   const [isFeatured, setIsFeatured] = useState(false);
   const [richDescription, setRichDescription] = useState();
   const [numReviews, setNumReviews] = useState(0);
