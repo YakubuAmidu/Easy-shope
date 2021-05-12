@@ -29,13 +29,14 @@ const Categories = (props) => {
           }}
         />
       </View>
-      <View>
+      <View style={styles.bottomBar}>
         <View>
           <Text>Add Category</Text>
         </View>
         <View style={{ width: width / 2.5 }}>
           <TextInput
             value={categoryName}
+            style={styles.input}
             onChangeText={(text) => setCategoryName(text)}
           />
         </View>
@@ -52,5 +53,25 @@ const Categories = (props) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  bottomBar: {
+    backgroundColor: "#fff",
+    width: width,
+    height: 60,
+    padding: 2,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+  },
+  input: {
+    height: 40,
+    borderColor: "grey",
+    borderWidth: 1,
+  },
+});
 
 export default Categories;
