@@ -102,6 +102,15 @@ const Products = (props) => {
           <Icon name="shopping-bag" size={18} color="white" />
           <Text>Orders</Text>
         </EasyButton>
+
+        <EasyButton
+          secondary
+          medium
+          onPress={() => props.navigation.navigate('ProductForm')}
+        >
+          <Icon name="plus" size={18} color="white" />
+          <Text>Products</Text>
+        </EasyButton>
       </View>
       <View>
         <Header searchBar rounded>
