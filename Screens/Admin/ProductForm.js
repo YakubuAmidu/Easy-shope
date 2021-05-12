@@ -18,6 +18,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import baseURL from "../../assets/common/baseUrl";
 import axios from "axios";
 import * as ImagePicker from "expo-image-picker";
+import mime from "mime";
 
 const ProductForm = (props) => {
   const [pickerValue, setPickerValue] = useState();
@@ -94,6 +95,13 @@ const ProductForm = (props) => {
 
     let formData = new FormData();
 
+    const newImageUri = "file:///" + image.split("file:/").join("");
+
+    formData.append("image", {
+      uri: newImageUri,
+      type: mime.getType(newImageUri),
+      name: newImageUri.split("/").pop(),
+    });
     formData.append("name", name);
     formData.append("brand", brand);
     formData.append("price", price);
@@ -221,11 +229,7 @@ const ProductForm = (props) => {
       </Item>
       {error ? <Error message={err} /> : null}
       <View style={styles.buttonContainer}>
-        <EasyButton
-          large
-          primary
-          //onPress
-        >
+        <EasyButton large primary onPress={() => addProduct()}>
           <Text style={styles.buttonText}>Confirm</Text>
         </EasyButton>
       </View>
