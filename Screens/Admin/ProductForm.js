@@ -17,6 +17,7 @@ import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import baseURL from '../../assets/common/baseUrl';
 import axios from 'axios';
+import * as ImagePicker from 'expo-image-picker';
 
 const ProductForm = (props) => {
   const [pickerValue, setPickerValue] = useState();
@@ -44,6 +45,16 @@ const ProductForm = (props) => {
       .then((res) => setCategories(res.data))
       .catch((error) => alert('Error to load categories'));
 
+    // Image picker
+    async () => {
+      if (Platform.OS !== 'web') {
+        const { status } = await ImagePicker.requestCameraPermissionsAsync();
+        if (status !== 'granted') {
+          alert('Sorry, we need camera roll permission to make this work');
+        }
+      }
+    };
+
     return () => {
       setCategories([]);
     };
@@ -51,10 +62,10 @@ const ProductForm = (props) => {
 
   return (
     <FormContainer title="Add Product">
-      <View>
-        <Image source={{ uri: mainImage }} />
-        <TouchableOpacity>
-          <Text>IMAGE</Text>
+      <View style={styles.imageContainer}>
+        <Image style={styles.image} source={{ uri: mainImage }} />
+        <TouchableOpacity style={styles.imagePicker}>
+          <Icon style={{ color: 'white' }} name="camera" />
         </TouchableOpacity>
       </View>
       <View style={styles.label}>
