@@ -46,7 +46,7 @@ const ProductForm = (props) => {
         </TouchableOpacity>
       </View>
       <View style={styles.label}>
-        <Text>Brand</Text>
+        <Text style={{ textDecorationLine: 'underline' }}>Brand</Text>
       </View>
       <Input
         placeholder="Brand"
@@ -57,7 +57,7 @@ const ProductForm = (props) => {
       />
 
       <View style={styles.label}>
-        <Text>Name</Text>
+        <Text style={{ textDecorationLine: 'underline' }}>Name</Text>
       </View>
       <Input
         placeholder="Name"
@@ -65,6 +65,18 @@ const ProductForm = (props) => {
         id="name"
         value={name}
         onChangeText={(text) => setName(text)}
+      />
+
+      <View style={styles.label}>
+        <Text style={{ textDecorationLine: 'underline' }}>Price</Text>
+      </View>
+      <Input
+        placeholder="price"
+        name="price"
+        id="price"
+        value={price}
+        keyboardType={'numeric'}
+        onChangeText={(text) => setPrice(text)}
       />
     </FormContainer>
   );
