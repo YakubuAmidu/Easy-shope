@@ -78,6 +78,18 @@ const ProductForm = (props) => {
         keyboardType={'numeric'}
         onChangeText={(text) => setPrice(text)}
       />
+
+      <View style={styles.label}>
+        <Text style={{ textDecorationLine: 'underline' }}>Stock</Text>
+      </View>
+      <Input
+        placeholder="stock"
+        name="stock"
+        id="stock"
+        value={countInStock}
+        keyboardType={'numeric'}
+        onChangeText={(text) => setCountInStock(text)}
+      />
     </FormContainer>
   );
 };
