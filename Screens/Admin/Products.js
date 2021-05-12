@@ -111,7 +111,17 @@ const Products = (props) => {
           <Icon name="plus" size={18} color="white" />
           <Text>Products</Text>
         </EasyButton>
+
+        <EasyButton
+          secondary
+          medium
+          onPress={() => props.navigation.navigate('Categories')}
+        >
+          <Icon name="plus" size={18} color="white" />
+          <Text>Categories</Text>
+        </EasyButton>
       </View>
+
       <View>
         <Header searchBar rounded>
           <Item style={{ padding: 5 }}>
