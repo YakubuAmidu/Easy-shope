@@ -31,6 +31,7 @@ const Orders = (props) => {
       <FlatList
         data={orderList}
         renderItem={({ item }) => <Text>{item.shippingAddress1}</Text>}
+        keyExtractor={(item) => item.id}
       />
     </View>
   );
