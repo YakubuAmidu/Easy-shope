@@ -33,6 +33,24 @@ const OrderCard = (props) => {
     }
   }, []);
 
-  return <View></View>;
+  return (
+    <View style={styles.container}>
+      <View style={styles.container}>
+        <Text>Order Number: #{props.id}</Text>
+      </View>
+    </View>
+  );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    padding: 2,
+    margin: 10,
+    borderRadius: 10,
+  },
+  title: {
+    backgroundColor: "#062b1f6",
+    padding: 5,
+  },
+});
 export default OrderCard;
