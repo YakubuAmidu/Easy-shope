@@ -3,7 +3,8 @@ import { View, FlatList, Text } from "react-native";
 import axios from "axios";
 import baseURL from "../../assets/common/baseUrl";
 import { useFocusEffect } from "@react-navigation/native";
-import { set } from "react-native-reanimated";
+
+import OrderCard from "../../Shared/OrderCard";
 
 const Orders = (props) => {
   const [orderList, setOrderList] = useState();
@@ -30,7 +31,9 @@ const Orders = (props) => {
     <View>
       <FlatList
         data={orderList}
-        renderItem={({ item }) => <Text>{item.shippingAddress1}</Text>}
+        renderItem={({ item }) => (
+          <OrderCard navigation={props.navigation} {...item} />
+        )}
         keyExtractor={(item) => item.id}
       />
     </View>

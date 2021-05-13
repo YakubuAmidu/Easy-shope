@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   title: {
-    backgroundColor: "#062b1f6",
+    backgroundColor: "#62b1f6",
     padding: 5,
   },
 });
