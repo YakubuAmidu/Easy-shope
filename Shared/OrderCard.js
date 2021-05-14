@@ -10,6 +10,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import baseURL from "../assets/common/baseUrl";
 
+const codes = [
+  { name: "Pending", code: "3" },
+  { name: "Shipped", code: "2" },
+  { name: "Delivered", code: "1" },
+];
+
 const OrderCard = (props) => {
   const [orderStatus, setOrderStatus] = useState();
   const [statusText, setStatusText] = useState();
@@ -48,10 +54,22 @@ const OrderCard = (props) => {
         <Text>City: {props.city}</Text>
         <Text>Country: {props.country}</Text>
         <Text>Date ordered: {props.dateOrdered.split("T")[0]}</Text>
-        <View>
+        <View style={styles.priceContainer}>
           <Text>Price:</Text>
-          <Text>$ {props.totalPrice}</Text>
+          <Text style={styles.price}>$ {props.totalPrice}</Text>
         </View>
+        <Picker
+          mode="dropdown"
+          iosIcon={<Icon color={"#007aff"} name="arrow-down" />}
+          style={{ width: undefined }}
+          selectedValue={statusChange}
+          placeholderIconColor={{ color: "#007aff" }}
+          onValueChange={(e) => setStatusChange(e)}
+        >
+          {codes.map((x) => {
+            return <Picker.Item key={c.codes} label={c.name} value={c.code} />;
+          })}
+        </Picker>
       </View>
     </View>
   );
@@ -66,6 +84,15 @@ const styles = StyleSheet.create({
   title: {
     backgroundColor: "#62b1f6",
     padding: 5,
+  },
+  priceContainer: {
+    marginTop: 10,
+    alignSelf: "flex-end",
+    flexDirection: "row",
+  },
+  price: {
+    color: "white",
+    fontWeight: "bold",
   },
 });
 export default OrderCard;
