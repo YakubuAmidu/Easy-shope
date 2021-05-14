@@ -66,6 +66,31 @@ const OrderCard = (props) => {
       user: props.user,
       zip: props.zip,
     };
+
+    axios
+      .put(`${baseURL}orders/${props.id}`, order, config)
+      .then((res) => {
+        if (res.status == 200 || res.status == 201) {
+          Toast.show({
+            topOffset: 60,
+            status: "success",
+            text1: "Order Completed",
+            text2: "",
+          });
+          setTimeout(() => {
+            props.clearCart();
+            props.navigation.navigate("Cart");
+          }, 5000);
+        }
+      })
+      .catch((error) => {
+        Toast.show({
+          topOffset: 60,
+          status: "Error",
+          text1: "Something went wrong",
+          text2: "Please try again",
+        });
+      });
   };
 
   return (
