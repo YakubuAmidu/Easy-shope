@@ -70,6 +70,13 @@ const OrderCard = (props) => {
             return <Picker.Item key={c.codes} label={c.name} value={c.code} />;
           })}
         </Picker>
+        <EasyButton
+          secondary
+          large
+          //onPress
+        >
+          <Text style={{ color: "white" }}>Update</Text>
+        </EasyButton>
       </View>
     </View>
   );
