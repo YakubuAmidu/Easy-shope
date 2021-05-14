@@ -24,6 +24,12 @@ const OrderCard = (props) => {
   const [cardColor, setCardColor] = useState();
 
   useEffect(() => {
+    AsyncStorage.getItem("jwt")
+      .then((res) => {
+        setToken(res);
+      })
+      .catch((error) => console.log(error));
+
     if (props.status == "3") {
       setOrderStatus(<TrakfickLight unavailable></TrakfickLight>);
       setStatusText("Pending");
@@ -38,6 +44,29 @@ const OrderCard = (props) => {
       setCardColor();
     }
   }, []);
+
+  const updatOrder = () => {
+    const config = {
+      Headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    };
+
+    const order = {
+      city: props.city,
+      country: props.country,
+      dateOrdered: props.dateOrdered,
+      id: props.id,
+      orderItems: props.orderItems,
+      phone: props.phone,
+      shippingAddress1: props.shippingAddress1,
+      shippingAddress2: props.shippingAddress2,
+      status: statusChange,
+      totalPrice: props.totalPrice,
+      user: props.user,
+      zip: props.zip,
+    };
+  };
 
   return (
     <View style={[{ backgroundColor: cardColor }, styles.container]}>
