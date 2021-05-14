@@ -45,6 +45,13 @@ const OrderCard = (props) => {
         <Text>
           Address: {props.shippingAddress1} {props.shippingAddress2}
         </Text>
+        <Text>City: {props.city}</Text>
+        <Text>Country: {props.country}</Text>
+        <Text>Date ordered: {props.dateOrdered.split("T")[0]}</Text>
+        <View>
+          <Text>Price:</Text>
+          <Text>$ {props.totalPrice}</Text>
+        </View>
       </View>
     </View>
   );
