@@ -34,9 +34,17 @@ const OrderCard = (props) => {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <View style={[{ backgroundColor: cardColor }, styles.container]}>
       <View style={styles.container}>
         <Text>Order Number: #{props.id}</Text>
+      </View>
+      <View style={{ marginTop: 10 }}>
+        <Text>
+          status: {statusText} {orderStatus}
+        </Text>
+        <Text>
+          Address: {props.shippingAddress1} {props.shippingAddress2}
+        </Text>
       </View>
     </View>
   );

@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from 'react';
-import { Text, View, Button } from 'react-native';
-import { Item, Picker } from 'native-base';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import FormContainer from '../../../Shared/Form/FormContainer';
-import Input from '../../../Shared/Form/Input';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import React, { useEffect, useState } from "react";
+import { Text, View, Button } from "react-native";
+import { Item, Picker } from "native-base";
+import Icon from "react-native-vector-icons/FontAwesome";
+import FormContainer from "../../../Shared/Form/FormContainer";
+import Input from "../../../Shared/Form/Input";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
-const countries = require('../../../assets/countries.json');
+const countries = require("../../../assets/countries.json");
 
 const Checkout = (props) => {
   const [orderItems, setOrderItems] = useState();
@@ -36,10 +36,12 @@ const Checkout = (props) => {
       phone,
       shippingAddress1: address,
       shippingAddress2: address2,
+      status: "3",
+      user,
       zip,
     };
 
-    props.navigation.navigate('Payment', { order });
+    props.navigation.navigate("Payment", { order });
   };
 
   return (
@@ -48,48 +50,48 @@ const Checkout = (props) => {
       extraHeight={200}
       enableOnAndroid={true}
     >
-      <FormContainer title={'Shipping Address'}>
+      <FormContainer title={"Shipping Address"}>
         <Input
-          placeholder={'phone'}
+          placeholder={"phone"}
           name="phone"
           value={phone}
-          keyboardType={'numeric'}
+          keyboardType={"numeric"}
           onChangeText={(text) => setPhone(text)}
         />
         <Input
-          placeholder={'Shipping address 1'}
-          name={'ShippingAddress1'}
+          placeholder={"Shipping address 1"}
+          name={"ShippingAddress1"}
           value={address}
           onChangeText={(text) => setAddress(text)}
         />
         <Input
-          placeholder={'Shipping address 2'}
-          name={'ShippingAddress2'}
+          placeholder={"Shipping address 2"}
+          name={"ShippingAddress2"}
           value={address2}
           onChangeText={(text) => setAddress2(text)}
         />
         <Input
-          placeholder={'City'}
-          name={'city'}
+          placeholder={"City"}
+          name={"city"}
           value={city}
           onChangeText={(text) => setCity(text)}
         />
         <Input
-          placeholder={'Zip Code'}
-          name={'zip'}
+          placeholder={"Zip Code"}
+          name={"zip"}
           value={zip}
-          keyboardType={'numeric'}
+          keyboardType={"numeric"}
           onChangeText={(text) => setZip(text)}
         />
         <Item picker>
           <Picker
             mode="dropdown"
-            iosIcon={<Icon name="arrow-down" color={'#007aff'} />}
+            iosIcon={<Icon name="arrow-down" color={"#007aff"} />}
             style={{ width: undefined }}
             selectedValue={country}
             placeholder="Select your country"
-            placeholderStyle={{ color: '#007aff' }}
-            placeholderIconColor={{ color: '#007aff' }}
+            placeholderStyle={{ color: "#007aff" }}
+            placeholderIconColor={{ color: "#007aff" }}
             onValueChange={(e) => setCountry(e)}
           >
             {countries.map((c) => {
@@ -97,7 +99,7 @@ const Checkout = (props) => {
             })}
           </Picker>
         </Item>
-        <View style={{ width: '80%', alignItems: 'center' }}>
+        <View style={{ width: "80%", alignItems: "center" }}>
           <Button title="Confirm" onPress={() => checkOut()} />
         </View>
       </FormContainer>
