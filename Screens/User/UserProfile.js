@@ -76,7 +76,7 @@ const UserProfile = (props) => {
             ]}
           />
         </View>
-        <View>
+        <View style={styles.order}>
           <Text style={{ fontSize: 20 }}>My orders</Text>
           <View>
             {orders ? (
@@ -84,7 +84,7 @@ const UserProfile = (props) => {
                 return <OrderCard key={x.id} {...x} />;
               })
             ) : (
-              <View>
+              <View style={style.order}>
                 <Text>You have no orders</Text>
               </View>
             )}
@@ -103,6 +103,11 @@ const styles = StyleSheet.create({
   subContainer: {
     alignItems: "center",
     marginTop: 60,
+  },
+  order: {
+    marginTop: 20,
+    alignItems: "center",
+    marginBottom: 60,
   },
 });
 

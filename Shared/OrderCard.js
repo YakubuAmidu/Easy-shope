@@ -24,11 +24,13 @@ const OrderCard = (props) => {
   const [cardColor, setCardColor] = useState();
 
   useEffect(() => {
-    AsyncStorage.getItem("jwt")
-      .then((res) => {
-        setToken(res);
-      })
-      .catch((error) => console.log(error));
+    if (props.editMode) {
+      AsyncStorage.getItem("jwt")
+        .then((res) => {
+          setToken(res);
+        })
+        .catch((error) => console.log(error));
+    }
 
     if (props.status == "3") {
       setOrderStatus(<TrakfickLight unavailable></TrakfickLight>);
@@ -111,21 +113,27 @@ const OrderCard = (props) => {
           <Text>Price:</Text>
           <Text style={styles.price}>$ {props.totalPrice}</Text>
         </View>
-        <Picker
-          mode="dropdown"
-          iosIcon={<Icon color={"#007aff"} name="arrow-down" />}
-          style={{ width: undefined }}
-          selectedValue={statusChange}
-          placeholderIconColor={{ color: "#007aff" }}
-          onValueChange={(e) => setStatusChange(e)}
-        >
-          {codes.map((x) => {
-            return <Picker.Item key={c.codes} label={c.name} value={c.code} />;
-          })}
-        </Picker>
-        <EasyButton secondary large onPress={() => updateOrder()}>
-          <Text style={{ color: "white" }}>Update</Text>
-        </EasyButton>
+        {props.editMode ? (
+          <View>
+            <Picker
+              mode="dropdown"
+              iosIcon={<Icon color={"#007aff"} name="arrow-down" />}
+              style={{ width: undefined }}
+              selectedValue={statusChange}
+              placeholderIconColor={{ color: "#007aff" }}
+              onValueChange={(e) => setStatusChange(e)}
+            >
+              {codes.map((x) => {
+                return (
+                  <Picker.Item key={c.codes} label={c.name} value={c.code} />
+                );
+              })}
+            </Picker>
+            <EasyButton secondary large onPress={() => updateOrder()}>
+              <Text style={{ color: "white" }}>Update</Text>
+            </EasyButton>
+          </View>
+        ) : null}
       </View>
     </View>
   );
