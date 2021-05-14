@@ -45,7 +45,7 @@ const OrderCard = (props) => {
     }
   }, []);
 
-  const updatOrder = () => {
+  const updateOrder = () => {
     const config = {
       Headers: {
         Authorization: `Bearer ${token}`,
@@ -74,12 +74,11 @@ const OrderCard = (props) => {
           Toast.show({
             topOffset: 60,
             status: "success",
-            text1: "Order Completed",
+            text1: "Order Edited",
             text2: "",
           });
           setTimeout(() => {
-            props.clearCart();
-            props.navigation.navigate("Cart");
+            props.navigation.navigate("Products");
           }, 5000);
         }
       })
@@ -124,11 +123,7 @@ const OrderCard = (props) => {
             return <Picker.Item key={c.codes} label={c.name} value={c.code} />;
           })}
         </Picker>
-        <EasyButton
-          secondary
-          large
-          //onPress
-        >
+        <EasyButton secondary large onPress={() => updateOrder()}>
           <Text style={{ color: "white" }}>Update</Text>
         </EasyButton>
       </View>
